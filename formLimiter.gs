@@ -2,8 +2,34 @@
 // Published under GNU General Public License, version 3 (GPL-3.0)
 // See restrictions at http://www.opensource.org/licenses/gpl-3.0.html
 // Support and contact at http://www.youpd.org/formlimiter
+var scriptTitle = "formLimiter V1.0.3 (2/5/14)";
 var scriptName = "formLimiter"
 var scriptTrackingId = "UA-40677834-1"
+
+function formLimiter_preconfig() {
+  // if you are interested in sharing your complete workflow system for others to copy (with script settings)
+  // Select the "Generate preconfig()" option in the menu and
+  //#######Paste preconfiguration code below before sharing your system for others to copy#######
+  
+ 
+  
+  
+  
+  
+  
+  //#######End preconfiguration code#######
+  ScriptProperties.setProperty('preconfigStatus', 'true');
+  onOpen();
+  //Fetch system name, if this script is part of a New Visions system
+  var systemName = NVSL.getSystemName();
+  if (systemName) {
+    ScriptProperties.setProperty('systemName', systemName)
+  }
+  //Fetch institutional tracking code.  If it exists, launch initialize function (autolaunch step 1 for repeat users)
+  //If it doesn't exist, the checkInstitutionalTrackingCode() will launch the tracking settings UI.
+  var institutionalTrackingString = NVSL.checkInstitutionalTrackingCode();
+}
+
 
 var HOURS = [12,1,2,3,4,5,6,7,8,9,10,11];
 var FORMLIMITERIMAGEID = '0B2vrNcqyzernR1dPa19jX3ZUUEk';
@@ -29,6 +55,7 @@ function onOpen() {
 }
 
 function formLimiter_settings() {
+  setSid();
   var app = UiApp.createApplication().setTitle('formLimiter Settings').setHeight(300);
   var imageId = FORMLIMITERIMAGEID;
   var url = 'https://drive.google.com/uc?export=download&id='+imageId;
